@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Browser Agent Benchmark — Chaos tests for browser agents</title>
+    <meta name="description" content="Browser Agent Chaos: the evil website test suite for AI browser agents. Run real-world dark-pattern challenges locally and score any agent." />
+    <meta property="og:title" content="Browser Agent Chaos" />
+    <meta property="og:description" content="Chaos Monkey for AI browser agents. We break browser agents, we don't build them." />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/favicon-64.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // GitHub Pages SPA fallback decoder. Pairs with public/404.html
+      // which rewrites every deep URL into `/?/dashboard&foo=bar#hash`.
+      // We undo that here before React Router boots.
+      (function () {
+        var l = window.location;
+        // After 404.html redirect, l.search starts with "?/<path>". The
+        // first char of search is "?", second char is "/", so we want
+        // search starting with "?/".
+        if (l.search.indexOf('?/') === 0) {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          });
+          var newPath = decoded[0]; // "/dashboard"
+          var newSearch = decoded.slice(1).join('&');
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + newPath + (newSearch ? '?' + newSearch : '') + l.hash
+          );
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

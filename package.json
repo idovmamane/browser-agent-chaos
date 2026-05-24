@@ -1,0 +1,57 @@
+{
+  "name": "browser-agent-chaos",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "The evil website test suite for AI browser agents.",
+  "bin": {
+    "browser-agent-chaos": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "pnpm -r --filter=./packages/* build && pnpm --filter=./apps/web build && pnpm --filter=./apps/cli build && node scripts/build-publish.mjs",
+    "predev": "node scripts/ensure-built.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:watch": "pnpm --filter=./apps/cli dev",
+    "prestart": "node scripts/ensure-built.mjs",
+    "start": "node apps/cli/dist/index.js",
+    "clean": "node scripts/clean.mjs",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "browser-agents",
+    "benchmark",
+    "chaos-monkey",
+    "browser-automation",
+    "claude",
+    "browser-use",
+    "stagehand",
+    "evaluation"
+  ],
+  "author": "Idov Mamane",
+  "license": "MIT",
+  "homepage": "https://github.com/idovmamane/browser-agent-chaos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idovmamane/browser-agent-chaos.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@fastify/static": "^7.0.0",
+    "fastify": "^4.26.0",
+    "nanoid": "^5.0.0",
+    "open": "^10.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

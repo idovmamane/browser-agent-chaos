@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="flare" x1="20" y1="140" x2="140" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2A6D"/>
+      <stop offset="45%" stop-color="#FF8A00"/>
+      <stop offset="100%" stop-color="#7C3BFF"/>
+    </linearGradient>
+    <linearGradient id="cyanRim" x1="38" y1="46" x2="118" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#35F4FF"/>
+      <stop offset="100%" stop-color="#35F4FF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="40%" stop-color="#05060A"/>
+      <stop offset="100%" stop-color="#1E0B33"/>
+    </radialGradient>
+    <clipPath id="coreClip">
+      <circle cx="80" cy="80" r="48"/>
+    </clipPath>
+  </defs>
+  <!-- Simplified for small sizes: no blur filters (favicons are tiny). -->
+  <circle cx="80" cy="80" r="58" fill="url(#flare)" opacity="0.55"/>
+  <circle cx="80" cy="80" r="48" fill="url(#coreGrad)"/>
+  <circle cx="80" cy="80" r="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <path d="M35 74A46 46 0 0 1 114 45" fill="none" stroke="url(#cyanRim)" stroke-width="4" stroke-linecap="round"/>
+  <g clip-path="url(#coreClip)">
+    <path d="M24 92L56 74L74 85L98 62L138 47" fill="none" stroke="url(#flare)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="74" cy="85" r="4" fill="#35F4FF"/>
+  </g>
+  <circle cx="122" cy="37" r="7" fill="#35F4FF"/>
+  <circle cx="122" cy="37" r="2.5" fill="#FFFFFF"/>
+</svg>

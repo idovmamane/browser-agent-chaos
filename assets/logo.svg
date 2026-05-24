@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Elegant browser analytics icon">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="flare" x1="20" y1="130" x2="140" y2="25" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF2A6D"/>
+      <stop offset="48%" stop-color="#FF8A00"/>
+      <stop offset="100%" stop-color="#7C3BFF"/>
+    </linearGradient>
+
+    <linearGradient id="aqua" x1="22" y1="24" x2="138" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#35F4FF"/>
+      <stop offset="100%" stop-color="#35F4FF" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <radialGradient id="core" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#151024"/>
+      <stop offset="58%" stop-color="#090713"/>
+      <stop offset="100%" stop-color="#05060A"/>
+    </radialGradient>
+
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7C3BFF" stop-opacity="0.4"/>
+      <stop offset="70%" stop-color="#FF2A6D" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FF2A6D" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft glow -->
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="subtleGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Browser window -->
+    <g id="browser">
+      <rect width="44" height="30" rx="5" fill="#090713" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M0 9.5H44" stroke="currentColor" stroke-width="1.2" opacity="0.75"/>
+      <circle cx="7" cy="5" r="1.25" fill="#FF2A6D"/>
+      <circle cx="12" cy="5" r="1.25" fill="#FF8A00"/>
+      <circle cx="17" cy="5" r="1.25" fill="#35F4FF"/>
+      <rect x="8" y="15" width="22" height="2.5" rx="1.25" fill="currentColor" opacity="0.28"/>
+      <rect x="8" y="21" width="30" height="2.5" rx="1.25" fill="currentColor" opacity="0.16"/>
+    </g>
+
+    <!-- Cursor -->
+    <g id="cursor">
+      <path
+        d="M0 0V13L3.3 9.8L6.6 15.4L8.9 14.1L5.6 8.6L10.4 7.7Z"
+        fill="currentColor"
+        stroke="#05060A"
+        stroke-width="0.75"
+        stroke-linejoin="round"
+      />
+    </g>
+  </defs>
+
+  <!-- Ambient background -->
+  <circle cx="80" cy="80" r="74" fill="url(#halo)"/>
+  <circle cx="80" cy="80" r="50" fill="url(#core)"/>
+  <circle cx="80" cy="80" r="49" fill="none" stroke="url(#aqua)" stroke-width="1" opacity="0.55"/>
+
+  <!-- Elegant orbital structure -->
+  <g fill="none" stroke-linecap="round">
+    <ellipse
+      cx="80" cy="80" rx="70" ry="24"
+      transform="rotate(28 80 80)"
+      stroke="#35F4FF"
+      stroke-width="1"
+      opacity="0.34"
+    />
+    <ellipse
+      cx="80" cy="80" rx="62" ry="32"
+      transform="rotate(-42 80 80)"
+      stroke="#FF2A6D"
+      stroke-width="1.15"
+      stroke-dasharray="14 10"
+      opacity="0.32"
+    />
+    <ellipse
+      cx="80" cy="80" rx="42" ry="42"
+      stroke="#7C3BFF"
+      stroke-width="1"
+      stroke-dasharray="3 8"
+      opacity="0.28"
+    />
+  </g>
+
+  <!-- Secondary interface cards -->
+  <g opacity="0.72">
+    <use href="#browser" x="12" y="23" transform="rotate(10 34 38)" color="#35F4FF"/>
+    <use href="#browser" x="106" y="61" transform="rotate(-13 128 76)" color="#7C3BFF"/>
+  </g>
+
+  <!-- Small floating card -->
+  <g transform="translate(113 17) rotate(14)" color="#FF8A00" opacity="0.78">
+    <rect width="29" height="19" rx="4" fill="#090713" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M0 6H29" stroke="currentColor" stroke-width="1" opacity="0.75"/>
+    <circle cx="5" cy="3.2" r="0.9" fill="#FF2A6D"/>
+    <circle cx="8.5" cy="3.2" r="0.9" fill="#FF8A00"/>
+    <circle cx="12" cy="3.2" r="0.9" fill="#35F4FF"/>
+  </g>
+
+  <!-- Central data line -->
+  <path
+    d="M12 97C27 82 35 67 49 72C61 77 65 99 78 98C94 97 100 48 116 45C128 43 139 51 150 56"
+    fill="none"
+    stroke="url(#flare)"
+    stroke-width="4.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#subtleGlow)"
+  />
+
+  <!-- Data nodes -->
+  <g filter="url(#subtleGlow)">
+    <circle cx="49" cy="72" r="4.2" fill="#090713" stroke="#FF2A6D" stroke-width="2"/>
+    <circle cx="78" cy="98" r="3.6" fill="#FF8A00"/>
+    <circle cx="116" cy="45" r="4.4" fill="#090713" stroke="#35F4FF" stroke-width="2"/>
+    <circle cx="116" cy="45" r="1.5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- URL pill -->
+  <g transform="translate(35 130) rotate(-7)">
+    <rect width="77" height="15" rx="7.5" fill="#090713" stroke="url(#aqua)" stroke-width="1.3" opacity="0.96"/>
+    <rect x="9" y="6" width="36" height="3" rx="1.5" fill="#35F4FF" opacity="0.46"/>
+    <circle cx="66" cy="7.5" r="2.3" fill="#FF8A00"/>
+  </g>
+
+  <!-- Refined scrollbar -->
+  <g transform="translate(143 43) rotate(4)" opacity="0.8">
+    <rect width="6" height="52" rx="3" fill="#05060A" stroke="#7C3BFF" stroke-width="1"/>
+    <rect x="1.6" y="14" width="2.8" height="18" rx="1.4" fill="#35F4FF"/>
+  </g>
+
+  <!-- Cursors -->
+  <g opacity="0.9">
+    <use href="#cursor" x="30" y="45" transform="rotate(-22 30 45)" color="#FF2A6D"/>
+    <use href="#cursor" x="84" y="117" transform="rotate(14 84 117)" color="#35F4FF"/>
+    <use href="#cursor" x="124" y="50" transform="rotate(50 124 50)" color="#FF8A00"/>
+  </g>
+
+  <!-- Minimal particles -->
+  <g filter="url(#softGlow)">
+    <circle cx="95" cy="26" r="1.8" fill="#35F4FF" opacity="0.9"/>
+    <circle cx="136" cy="105" r="1.4" fill="#FF2A6D" opacity="0.85"/>
+    <circle cx="50" cy="116" r="1.2" fill="#FF8A00" opacity="0.8"/>
+    <circle cx="17" cy="57" r="1.8" fill="#7C3BFF" opacity="0.85"/>
+  </g>
+
+  <!-- Subtle screen-tear accents -->
+  <g stroke-linecap="round" opacity="0.78">
+    <path d="M123 95H154" stroke="#FF2A6D" stroke-width="1.8"/>
+    <path d="M134 99H151" stroke="#FF8A00" stroke-width="1.1"/>
+    <path d="M20 76H43" stroke="#35F4FF" stroke-width="1.2" opacity="0.55"/>
+  </g>
+</svg>
