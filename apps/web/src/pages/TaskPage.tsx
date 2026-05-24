@@ -152,8 +152,6 @@ export function TaskPage() {
       <div className="task-body">
         {sealedOutcome ? (
           <AlreadyAttempted outcome={sealedOutcome} sessionId={sessionId} />
-        ) : template === 'demo-mode' ? (
-          <DemoModeScreen challengeId={challengeId} />
         ) : Component ? (
           <Component />
         ) : template === 'stage' ? (
@@ -275,53 +273,6 @@ function UnknownTemplate({ id }: { id: string }) {
         Challenge <code>{id}</code> has no actionSpec yet. This is a bug — the
         challenge was registered but its family data wasn't loaded.
       </p>
-    </div>
-  );
-}
-
-/**
- * Rendered by TaskPage when the resolver returns `template: 'demo-mode'`.
- * Used on the GitHub Pages static demo: previews can't actually mount or
- * score (no Node server behind the SPA), so we show the challenge id +
- * an instruction to run the benchmark locally.
- */
-function DemoModeScreen({ challengeId }: { challengeId: string }) {
-  return (
-    <div className="task-card" data-testid="demo-mode">
-      <h2 style={{ marginTop: 0 }}>
-        <code>{challengeId}</code>
-      </h2>
-      <p className="subtle">
-        You're on the static demo. Challenges can't actually run here — they
-        need a local server to mount, score actions, and seal attempts.
-      </p>
-      <p style={{ marginTop: 14 }}>To run this challenge for real:</p>
-      <pre className="prompt" style={{ marginTop: 8 }}>npx browser-agent-chaos</pre>
-      <p className="subtle" style={{ marginTop: 10, fontSize: 13 }}>
-        That boots the benchmark on <code>localhost:3131</code> and prints a
-        one-line prompt you paste into your AI agent. The agent then drives
-        every challenge, and the server scores each attempt.
-      </p>
-      <div
-        style={{
-          display: 'flex',
-          gap: 10,
-          marginTop: 18,
-          flexWrap: 'wrap',
-        }}
-      >
-        <Link className="button-secondary" to="/">
-          ← Back to catalogue
-        </Link>
-        <a
-          className="button-secondary"
-          href="https://github.com/idovmamane/browser-agent-chaos"
-          target="_blank"
-          rel="noopener"
-        >
-          GitHub →
-        </a>
-      </div>
     </div>
   );
 }

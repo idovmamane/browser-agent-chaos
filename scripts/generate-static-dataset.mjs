@@ -26,6 +26,46 @@ const allChallenges = challengesModule.challenges || challengesModule.default ||
 const challengeIds = allChallenges.map((c) => ({ id: c.id, difficulty: c.difficulty ?? 'medium' }));
 console.log(`Loaded ${challengeIds.length} challenges`);
 
+// Bake the full per-challenge data the demo needs. On the live server these
+// fields are stripped from the static bundle (anti-cheat). On the static demo
+// there's no scoring to defend against — we want pixel-parity with the dev
+// site, so we ship the copy + actionSpec + a pre-resolved stage.
+const demoChallenges = allChallenges.map((c) => {
+  // Stage challenges: pre-resolve the stage once with a deterministic seed so
+  // every static-demo visitor sees the same DOM. The mock won't have a real
+  // (sessionId, challengeId) seed pair to derive a per-session stage from.
+  let resolvedStage = null;
+  if (c.stage || c.stageFactory) {
+    try {
+      const seed = 0xC0DE; // deterministic across all demo visitors
+      const s = c.stageFactory ? c.stageFactory(seed) : c.stage;
+      resolvedStage = {
+        kind: s.kind,
+        data: s.data,
+        check: s.check,
+        successMessage: s.successMessage,
+      };
+    } catch (err) {
+      console.warn(`stageFactory failed for ${c.id}:`, err.message);
+    }
+  }
+  return {
+    id: c.id,
+    title: c.title,
+    tagline: c.tagline,
+    goal: c.goal,
+    rules: c.rules ?? [],
+    traps: c.traps ?? [],
+    difficulty: c.difficulty ?? 'medium',
+    estimatedSeconds: c.estimatedSeconds ?? 30,
+    category: c.category ?? 'core',
+    template: c.template ?? (resolvedStage ? 'stage' : 'bespoke'),
+    templateData: c.templateData ?? null,
+    actionSpec: c.actionSpec ?? null,
+    stage: resolvedStage,
+  };
+});
+
 const AGENT_PROFILES = [
   { label: 'claude-sonnet-4', tier: 'top', count: 3 },
   { label: 'claude-opus-4',   tier: 'top', count: 2 },
@@ -188,7 +228,7 @@ const catalogue = allChallenges.map((c) => ({
   id: c.id,
   category: c.category ?? 'core',
   difficulty: c.difficulty ?? 'medium',
-  template: c.template ?? 'bespoke',
+  template: c.template ?? (c.stage || c.stageFactory ? 'stage' : 'bespoke'),
   estimatedSeconds: c.estimatedSeconds ?? 30,
 }));
 
@@ -200,6 +240,11 @@ const dataset = {
     long: challengeIds.length,
   },
   catalogue,
+  // Full per-challenge data used by the client-side mock server. Includes
+  // copy (title/goal/rules/traps), actionSpec, templateData, and a
+  // pre-resolved stage spec for v2 challenges. NOT shipped by the real
+  // server — only the static demo carries this.
+  challenges: demoChallenges,
   sessions,
 };
 
